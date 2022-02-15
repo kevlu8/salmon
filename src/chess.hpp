@@ -10,6 +10,7 @@ public:
     std::string enPassant, fullMove;
 
     fen(std::string position);
+    fen();
 
     std::string toString();
 
