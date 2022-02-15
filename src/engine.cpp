@@ -11,7 +11,7 @@ float getEval(fen position) {
     Then, we should look at the pawn structure.
     Finally, we make our decision off of each of those factors. */
     
-    char board[8][8] = position.parse();
+    char **board = position.parse(); // [8][8]
     
     return eval;
 }

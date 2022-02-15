@@ -21,6 +21,11 @@ int **coord::to2DArray() {
     return array;
 }
 
+void piece::move() {
+	this->pos.x += this->movement.x;
+	this->pos.y += this->movement.y;
+}
+
 class WhitePiece {
     class pawn {
     private:

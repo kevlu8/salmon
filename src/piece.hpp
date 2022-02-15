@@ -1,40 +1,36 @@
 #include "include.hpp"
 
 class coord {
-private:
-    int x;
-    int y;
 public:
+    int x, y;
     coord(int x, int y);
     coord();
     int **to2DArray();
 };
 
 class piece {
-private:
+public:
     coord pos;
     coord movement;
-    const int value;
-    const bool color;
-
-public:
+    int value;
+    bool color;
     piece() {
-        //if u call this then fuck u // ok
+        //if u call this then fuck u 
+        this->value = 0;
+        this->color = true;
     }
 
-    void move() {
-        pos.x += movement.x;
-        pos.y += movement.y;
-    }
+    void move();
 };
 
 class pawn : public piece {
 public:
     pawn(coord pos) {
         this->pos = pos;
-        this->movement = //why did i do the pawn first its legit so weird
+        // this->movement = //why did i do the pawn first its legit so weird
     }
 };
+
 class WhitePiece {
     class pawn {
     private:
