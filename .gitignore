@@ -1,3 +1,11 @@
+# Microsoft stuff
+*.sln
+.vs/
+x64/
+Debug/
+Release/
+obj/
+
 # Prerequisites
 *.d
 
