@@ -1,5 +1,9 @@
 #include "chess.hpp"
 
+fen::fen() {
+    this->position = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+}
+
 fen::fen(std::string position) {
     this->position = position;
     std::cout << "FEN: " << position << std::endl;
@@ -97,12 +101,18 @@ char fen::getPiece(int x, int y) {
 
 game::game(fen f) {
     this->f = f;
-    this->board = f.parse();
+    this->board = f.parse(); // erroring
+    std::cout << "1" << std::endl;
     this->turn = f.turn;
+    std::cout << "1" << std::endl;
     this->enPassant = f.enPassant;
+    std::cout << "1" << std::endl;
     this->castling = f.castling;
+    std::cout << "1" << std::endl;
     this->halfMove = f.halfMove;
+    std::cout << "1" << std::endl;
     this->fullMove = std::stoi(f.fullMove);
+    std::cout << "Game created" << std::endl;
 }
 
 void game::makeMove(std::string move) {
@@ -114,6 +124,7 @@ void game::makeMove(std::string move) {
 }
 
 void game::printBoard() {
+    std::cout << "check 1 \n";
     std::cout << this->f.toString() << std::endl;
 }
 

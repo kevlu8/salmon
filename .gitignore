@@ -1,4 +1,7 @@
 # Microsoft stuff
+.vscode/
+autom4te.cache/
+*.cache/
 *.sln
 .vs/
 x64/

@@ -26,6 +26,7 @@ void piece::move() {
 	this->pos.y += this->movement.y;
 }
 
+/*
 class WhitePiece {
     class pawn {
     private:
@@ -241,6 +242,7 @@ class BlackPiece {
         king(coord position);
     };
 };
+*/
 
 WhitePiece::pawn::pawn(coord position) {
     this->position = position;
