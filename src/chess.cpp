@@ -88,7 +88,7 @@ char **fen::parse() {
             x = 0;
             y++;
         } else {
-            this->board[x][y] = this->position[i];
+            this->board[x][y] = piece(this->position[i]);
             x++;
         }
     }

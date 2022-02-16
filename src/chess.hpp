@@ -5,7 +5,9 @@
 class fen {
 private:
     std::string position;
-    char **board;
+    piece** board = {
+        { new piece('r') },
+    };
 public:
     int turn, halfMove, castling;
     std::string enPassant, fullMove;

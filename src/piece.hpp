@@ -21,6 +21,11 @@ public:
         this->color = true;
     }
 
+    piece(char n) {
+        this->value = 1;
+        this->color = false;
+    }
+
     void move();
 };
 
