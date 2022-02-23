@@ -21,9 +21,13 @@ int **coord::to2DArray() {
     return array;
 }
 
-void piece::move() {
-	this->pos.x += this->movement.x;
-	this->pos.y += this->movement.y;
+void piece::move(int moveId, int amount) {
+    this->pos.x += this->movement[moveId].x * amount;
+    this->pos.y += this->movement[moveId].y * amount;
+}
+
+char piece::getId() {
+    return this->id;
 }
 
 /*
@@ -243,7 +247,7 @@ class BlackPiece {
     };
 };
 */
-
+/*
 WhitePiece::pawn::pawn(coord position) {
     this->position = position;
 }
@@ -290,4 +294,4 @@ BlackPiece::queen::queen(coord position) {
 
 BlackPiece::king::king(coord position) {
 	this->position = position;
-}
+}*/

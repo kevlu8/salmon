@@ -5,9 +5,6 @@
 class fen {
 private:
     std::string position;
-    piece** board = {
-        { new piece('r') },
-    };
 public:
     int turn, halfMove, castling;
     std::string enPassant, fullMove;
@@ -17,15 +14,17 @@ public:
 
     std::string toString();
 
-    char **parse();
+    piece **parse();
 
     char getPiece(int x, int y);
+
+    piece **board;
 };
 
 class game {
 private:
     fen f;
-    char **board;
+    piece **board;
     int turn; // 0 = white, 1 = black
     std::string enPassant;
     int castling; // 1 = no castling, 2 = white can castle kingside, 3 = white can castle queenside, 5 = black can castle kingside, 7 = black can castle queenside

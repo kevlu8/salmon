@@ -11,8 +11,9 @@ public:
 
 class piece {
 public:
+    char id;
     coord pos;
-    coord movement;
+    coord movement[8];
     int value;
     bool color;
     piece() {
@@ -26,109 +27,108 @@ public:
         this->color = false;
     }
 
-    void move();
+    void move(int moveId, int amount);
+
+    char getId();
 };
 
 class pawn : public piece {
 public:
-    pawn(coord pos) {
+    pawn(bool color, coord pos) {
         this->pos = pos;
-        // this->movement = //why did i do the pawn first its legit so weird
+        this->value = 1;
+        this->color = color;
+        this->movement[0] = *new coord(0, 1);
+        this->movement[2] = *new coord(1, 1);
+        this->movement[1] = *new coord(-1, 1);
+        if (color) this->id = 'P';
+        else this->id = 'p';
     }
 };
 
-class WhitePiece {
-    class pawn {
-    private:
-        coord position;
-        const int value = 1;
-    public:
-        pawn(coord position);
-    };
-    class knight {
-    private:
-        coord position;
-        const int value = 3;
-    public:
-        knight(coord position);
-    };
-    class bishop {
-    private:
-        coord position;
-        const int value = 3;
-    public:
-        bishop(coord position);
-    };
-    class rook {
-    private:
-        coord position;
-        const int value = 5;
-        bool moved = false;
-    public:
-        rook(coord position);
-    };
-    class queen {
-    private:
-        coord position;
-        const int value = 9;
-    public:
-        queen(coord position);
-    };
-    class king {
-    private:
-        coord position;
-        const int value = 0;
-        bool inCheck = false;
-        bool moved = false;
-    public:
-        king(coord position);
-    };
+class knight : public piece {
+public:
+    knight(bool color, coord pos) {
+        this->pos = pos;
+        this->value = 3;
+        this->color = color;
+        this->movement[0] = *new coord(1, 2);
+        this->movement[1] = *new coord(-1, 2);
+        this->movement[2] = *new coord(2, 1);
+        this->movement[3] = *new coord(-2, 1);
+        this->movement[4] = *new coord(2, -1);
+        this->movement[5] = *new coord(-2, -1);
+        this->movement[6] = *new coord(1, -2);
+        this->movement[7] = *new coord(-1, -2);
+        if (color) this->id = 'N';
+        else this->id = 'n';
+    }
 };
 
-class BlackPiece {
-    class pawn {
-    private:
-        coord position;
-        const int value = 1;
-    public:
-        pawn(coord position);
-    };
-    class knight {
-    private:
-        coord position;
-        const int value = 3;
-    public:
-        knight(coord position);
-    };
-    class bishop {
-    private:
-        coord position;
-        const int value = 3;
-    public:
-        bishop(coord position);
-    };
-    class rook {
-    private:
-        coord position;
-        const int value = 5;
-        bool moved = false;
-    public:
-        rook(coord position);
-    };
-    class queen {
-    private:
-        coord position;
-        const int value = 9;
-    public:
-        queen(coord position);
-    };
-    class king {
-    private:
-        coord position;
-        const int value = 0;
-        bool inCheck = false;
-        bool moved = false;
-    public:
-        king(coord position);
-    };
+class bishop : public piece {
+public:
+    bishop(bool color, coord pos) {
+        this->pos = pos;
+        this->value = 3;
+        this->color = color;
+        this->movement[0] = *new coord(1, 1);
+        this->movement[1] = *new coord(-1, 1);
+        this->movement[2] = *new coord(1, -1);
+        this->movement[3] = *new coord(-1, -1);
+        if (color) this->id = 'B';
+        else this->id = 'b';
+    }
+};
+
+class rook : public piece {
+public:
+    rook(bool color, coord pos) {
+        this->pos = pos;
+        this->value = 5;
+        this->color = color;
+        this->movement[0] = *new coord(1, 0);
+        this->movement[1] = *new coord(-1, 0);
+        this->movement[2] = *new coord(0, 1);
+        this->movement[3] = *new coord(0, -1);
+        if (color) this->id = 'R';
+        else this->id = 'r';
+    }
+};
+
+class queen : public piece {
+public:
+    queen(bool color, coord pos) {
+        this->pos = pos;
+        this->value = 9;
+        this->color = color;
+        this->movement[0] = *new coord(1, 0);
+        this->movement[1] = *new coord(-1, 0);
+        this->movement[2] = *new coord(0, 1);
+        this->movement[3] = *new coord(0, -1);
+        this->movement[4] = *new coord(1, 1);
+        this->movement[5] = *new coord(-1, 1);
+        this->movement[6] = *new coord(1, -1);
+        this->movement[7] = *new coord(-1, -1);
+        if (color) this->id = 'Q';
+        else this->id = 'q';
+    }
+};
+
+class king : public piece {
+public:
+    king(bool color, coord pos) {
+        this->pos = pos;
+        this->value = 2147483647;
+        this->color = color;
+        this->movement[0] = *new coord(1, 0);
+        this->movement[1] = *new coord(-1, 0);
+        this->movement[2] = *new coord(0, 1);
+        this->movement[3] = *new coord(0, -1);
+        this->movement[4] = *new coord(1, 1);
+        this->movement[5] = *new coord(-1, 1);
+        this->movement[6] = *new coord(1, -1);
+        this->movement[7] = *new coord(-1, -1);
+        if (color) this->id = 'K';
+        else this->id = 'k';
+    }
 };

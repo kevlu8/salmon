@@ -13,10 +13,66 @@ std::string fen::toString() {
     return this->position;
 }
 
-char **fen::parse() {
-    int x = 0, y = 0;
-    int numSpaces = 0;
-    for (int i = 0; i < this->position.length(); i++) {
+piece **fen::parse() {
+    //int x = 0, y = 0;
+    //int numSpaces = 0;
+    int fenPos = 0;
+
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            //checking if skips
+            if (this->position.at(fenPos) == '1') {
+                x++;
+            } else if (this->position.at(fenPos) == '2') {
+                x += 2;
+            } else if (this->position.at(fenPos) == '3') {
+                x += 3;
+            } else if (this->position.at(fenPos) == '4') {
+                x += 4;
+            } else if (this->position.at(fenPos) == '5') {
+                x += 5;
+            } else if (this->position.at(fenPos) == '6') {
+                x += 6;
+            } else if (this->position.at(fenPos) == '7') {
+                x += 7;
+            } else if (this->position.at(fenPos) == '8') {
+                x += 8;
+            } else {
+
+                //checking if new row
+                if (this->position.at(fenPos) == '/') {
+                    x = 69;
+                    
+                } else {
+                    
+                    //checking if piece
+                    if (this->position.at(fenPos) == 'P') {
+                        this->board[x][y] = *new pawn(1, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'p') {
+                        this->board[x][y] = *new pawn(0, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'N') {
+                       this->board[x][y] = *new knight(1, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'n') {
+                        this->board[x][y] = *new knight(0, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'B') {
+                        this->board[x][y] = *new bishop(1, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'b') {
+                        this->board[x][y] = *new bishop(0, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'R') {
+                        this->board[x][y] = *new rook(1, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'r') {
+                        this->board[x][y] = *new rook(0, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'Q') {
+                        this->board[x][y] = *new queen(1, *new coord(x, y));
+                    } else if (this->position.at(fenPos) == 'q') {
+                        this->board[x][y] = *new queen(0, *new coord(x, y));
+                    }
+                }
+            }
+            fenPos++;
+        }
+    }
+    /*for (int i = 0; i < this->position.length(); i++) {
         if (this->position[i] == ' ') {
             if (numSpaces < 6) {
                 numSpaces++;
@@ -91,12 +147,12 @@ char **fen::parse() {
             this->board[x][y] = piece(this->position[i]);
             x++;
         }
-    }
+    }*/
     return this->board;
 }
 
 char fen::getPiece(int x, int y) {
-    return this->board[x][y];
+    return this->board[x][y].getId();
 }
 
 game::game(fen f) {
